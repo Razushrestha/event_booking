@@ -18,11 +18,14 @@
     "seed": "npm run seed -w backend",
     "docker:up": "docker compose up --build -d",
     "docker:up:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+    "docker:up:ip": "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ip.yml up --build -d",
     "docker:down": "docker compose down",
     "docker:down:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml down",
+    "docker:down:ip": "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ip.yml down",
     "docker:logs": "docker compose logs -f",
     "docker:logs:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f",
-    "docker:seed": "docker compose -f docker-compose.yml -f docker-compose.prod.yml exec backend npm run seed"
+    "docker:logs:ip": "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ip.yml logs -f",
+    "docker:seed": "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ip.yml exec backend npm run seed"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

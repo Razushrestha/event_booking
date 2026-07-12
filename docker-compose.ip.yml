@@ -1,0 +1,11 @@
+# IP-only hosting — no domain required
+# Use with:
+# docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ip.yml up --build -d
+
+services:
+  frontend:
+    ports:
+      - "${APP_PORT:-3007}:80"   # Open http://YOUR_VPS_IP:3007 in the browser
+
+  # MongoDB stays internal (mongodb:27017). API connects automatically.
+  # For Compass, SSH into VPS and run: docker compose exec mongodb mongosh event

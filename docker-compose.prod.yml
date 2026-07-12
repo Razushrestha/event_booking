@@ -18,4 +18,4 @@ services:
 
   frontend:
     ports:
-      - "127.0.0.1:8080:80"  # Host nginx proxies eventbooking domain here
+      - "127.0.0.1:${APP_PORT:-3007}:80"  # Host nginx proxies here (domain mode)

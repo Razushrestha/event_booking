@@ -115,26 +115,31 @@ npm run docker:down
 
 The frontend container proxies `/api` and `/uploads` to the backend, so the app works without CORS issues in Docker.
 
-## VPS deployment (eventbooking.com)
+## VPS deployment
 
-Full step-by-step guide: **[deploy/DEPLOY.md](deploy/DEPLOY.md)**
+### No domain yet? Use your VPS IP
 
-Quick start on your VPS:
+Full guide: **[deploy/DEPLOY-IP.md](deploy/DEPLOY-IP.md)**
 
 ```bash
 cp deploy/.env.production.example .env
-# Edit .env — set APP_URL=https://eventbooking.com and strong secrets
-chmod +x deploy/deploy.sh
-./deploy/deploy.sh
-sudo cp deploy/nginx/eventbooking.conf /etc/nginx/sites-available/eventbooking
-sudo ln -sf /etc/nginx/sites-available/eventbooking /etc/nginx/sites-enabled/
-sudo certbot --nginx -d eventbooking.com -d www.eventbooking.com
+# Set APP_URL=http://YOUR_VPS_IP:3007 in .env
+chmod +x deploy/deploy-ip.sh
+./deploy/deploy-ip.sh
 npm run docker:seed
 ```
 
-Your site will be live at **https://eventbooking.com**.
+Your site will be at **http://163.47.151.250:3007**
 
-If you use a subdomain (e.g. `eventbooking.yourdomain.com.np`), update `APP_URL` in `.env` and the `server_name` in `deploy/nginx/eventbooking.conf`.
+### With a domain later (eventbooking.com)
+
+Guide: **[deploy/DEPLOY.md](deploy/DEPLOY.md)**
+
+```bash
+# Set APP_URL=https://eventbooking.com in .env
+./deploy/deploy.sh
+sudo certbot --nginx -d eventbooking.com
+```
 
 ## Git
 
