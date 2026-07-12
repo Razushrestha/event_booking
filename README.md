@@ -129,7 +129,7 @@ chmod +x deploy/deploy-ip.sh
 npm run docker:seed
 ```
 
-Your site will be at **http://163.47.151.250:3007**
+Your site URL: **http://eventbooking.duckdns.org:3007** (see [deploy/HOSTNAME.md](deploy/HOSTNAME.md) to set up the free name).
 
 ### With a domain later (eventbooking.com)
 

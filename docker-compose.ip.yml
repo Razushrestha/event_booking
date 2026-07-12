@@ -5,7 +5,8 @@
 services:
   frontend:
     ports:
-      - "${APP_PORT:-3007}:80"   # Open http://YOUR_VPS_IP:3007 in the browser
+      - "${APP_PORT:-3007}:80"   # http://eventbooking.duckdns.org:3007
+      - "80:80"                  # http://eventbooking.duckdns.org (optional, no port)
 
   # MongoDB stays internal (mongodb:27017). API connects automatically.
   # For Compass, SSH into VPS and run: docker compose exec mongodb mongosh event
