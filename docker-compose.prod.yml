@@ -1,0 +1,21 @@
+# Production overrides — use with:
+# docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+
+services:
+  mongodb:
+    ports: []  # MongoDB stays internal only
+
+  backend:
+    ports: []  # API reached via frontend nginx proxy
+    environment:
+      NODE_ENV: production
+      WEB_HOST: ${APP_URL}
+      FRONTEND_URL: ${APP_URL}
+      IMAGE_URL: ${APP_URL}
+      FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      ADMIN_BOOTSTRAP_SECRET: ${ADMIN_BOOTSTRAP_SECRET:-}
+
+  frontend:
+    ports:
+      - "127.0.0.1:8080:80"  # Host nginx proxies eventbooking domain here
