@@ -227,6 +227,11 @@ const getLandingPageData = async (req, res) => {
                 }
             },
             {
+                $match: {
+                    selectedEvent: { $exists: true, $ne: null }
+                }
+            },
+            {
                 $replaceRoot: { newRoot: "$selectedEvent" }
             },
             {

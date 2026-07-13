@@ -10,8 +10,9 @@ sudo systemctl enable mongod
 
 echo "==> 2. Check backend/.env exists..."
 if [ ! -f backend/.env ]; then
-  echo "ERROR: Create backend/.env first (see deploy/native/backend.env.example)"
-  exit 1
+  echo "Creating backend/.env from example..."
+  cp deploy/native/backend.env.example backend/.env
+  echo "WARNING: Edit backend/.env with your JWT secrets if not already set"
 fi
 
 echo "==> 3. Install deps & rebuild frontend with correct API URL..."
