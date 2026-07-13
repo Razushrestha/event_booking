@@ -115,31 +115,34 @@ npm run docker:down
 
 The frontend container proxies `/api` and `/uploads` to the backend, so the app works without CORS issues in Docker.
 
-## VPS deployment
+## VPS deployment (no Docker) — recommended
 
-### No domain yet? Use your VPS IP
+**URL:** http://163.47.151.250:3007
 
-Full guide: **[deploy/DEPLOY-IP.md](deploy/DEPLOY-IP.md)**
+Full guide: **[deploy/DEPLOY-NATIVE.md](deploy/DEPLOY-NATIVE.md)**
 
 ```bash
-cp deploy/.env.production.example .env
-# Set APP_URL=http://YOUR_VPS_IP:3007 in .env
-chmod +x deploy/deploy-ip.sh
+ssh root@163.47.151.250
+git clone https://github.com/Razushrestha/event_booking.git
+cd event_booking
+chmod +x deploy/native/install.sh deploy/native/deploy.sh
+./deploy/native/install.sh
+cp deploy/native/backend.env.example backend/.env
+./deploy/native/deploy.sh
+npm run seed
+```
+
+## VPS deployment (Docker — optional)
+
+See [deploy/DEPLOY-IP.md](deploy/DEPLOY-IP.md) if you prefer Docker.
+
+```bash
+cp deploy/env.vps.example .env
 ./deploy/deploy-ip.sh
 npm run docker:seed
 ```
 
 Your site: **http://163.47.151.250:3007**
-
-### With a domain later (eventbooking.com)
-
-Guide: **[deploy/DEPLOY.md](deploy/DEPLOY.md)**
-
-```bash
-# Set APP_URL=https://eventbooking.com in .env
-./deploy/deploy.sh
-sudo certbot --nginx -d eventbooking.com
-```
 
 ## Git
 

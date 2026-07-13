@@ -16,7 +16,7 @@
     "start:frontend": "npm run start -w frontend",
     "install:all": "npm install",
     "seed": "npm run seed -w backend",
-    "docker:up": "docker compose up --build -d",
+    "deploy:native": "bash deploy/native/deploy.sh",
     "docker:up:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
     "docker:up:ip": "docker compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.ip.yml up --build -d",
     "docker:down": "docker compose down",
